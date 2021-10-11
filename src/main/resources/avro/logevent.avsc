@@ -1,0 +1,15 @@
+{
+  "type" : "record",
+  "name" : "LogEvent",
+  "namespace" : "com.demo.log4j2.appender",
+  "fields" : [ {
+    "name" : "logger",
+    "type" : "string"
+  }, {
+    "name" : "level",
+    "type" : "string"
+  }, {
+    "name" : "message",
+    "type" : "string"
+  } ]
+}

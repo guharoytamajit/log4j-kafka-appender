@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="TRACE" packages="com.demo.log4j2.appender">
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%m%n" />
+		</Console>
+		<Kafka name="KAFKALOGGER1" topic="TEST-TOPIC2" enable="true">
+			<Property name="bootstrap.servers">localhost:9092</Property>
+			<Property name="key.serializer">org.apache.kafka.common.serialization.StringSerializer</Property>
+			<Property name="value.serializer">io.confluent.kafka.serializers.KafkaAvroSerializer</Property>
+			<Property name="schema.registry.url">http://127.0.0.1:8081</Property>
+			<PatternLayout pattern="%5p [%d{ISO8601}] :  %m%n" />
+		</Kafka>
+	</Appenders>
+
+	<Loggers>
+	    <Logger name="org.apache.kafka" level="INFO">
+			<AppenderRef ref="console"/>
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="KAFKALOGGER1" />
+		</Root>
+	</Loggers>
+</Configuration>
